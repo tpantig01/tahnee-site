@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% if title %}{{ title }} — {% endif %}{{ site.name }}</title>
+    <meta name="description" content="{{ site.bio_short }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <a href="/" class="nav-name">{{ site.name }}</a>
+      <div class="nav-links">
+        <a href="/#work">Work</a>
+        <a href="/#about">About</a>
+        <a href="/writing/">Writing</a>
+        <a href="/#contact">Contact</a>
+      </div>
+    </nav>
+
+    <main>
+      {{ content | safe }}
+    </main>
+
+    <footer class="footer">
+      <p>{{ site.name }} — {{ site.location }}</p>
+      <div class="footer-links">
+        {% if site.instagram %}<a href="{{ site.instagram }}" target="_blank" rel="noopener">Instagram</a>{% endif %}
+        {% if site.email %}<a href="mailto:{{ site.email }}">Email</a>{% endif %}
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+---
+layout: layouts/base.njk
+title: Writing
+---
+
+<section class="writing-index">
+  <div class="writing-index-header">
+    <p class="section-label">Writing</p>
+    <h1>Essays, notes &amp; process</h1>
+  </div>
+
+  <div class="writing-list">
+    {% for post in collections.writing %}
+      <a href="{{ post.url }}" class="writing-list-item">
+        <div class="writing-list-meta">{{ post.data.type }} — {{ post.data.date | dateDisplay }}</div>
+        <div class="writing-list-title">{{ post.data.title }}</div>
+        <div class="writing-list-excerpt">{{ post.data.excerpt }}</div>
+      </a>
+    {% else %}
+      <p class="empty-state">Writing coming soon.</p>
+    {% endfor %}
+  </div>
+</section>

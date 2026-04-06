@@ -1,0 +1,49 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "src/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "general"
+        label: "General"
+        file: "src/_data/site.json"
+        fields:
+          - { label: "Site Name", name: "name", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Bio (short, for hero)", name: "bio_short", widget: "text" }
+          - { label: "Bio (full, for about section)", name: "bio_full", widget: "markdown" }
+          - { label: "Instagram URL", name: "instagram", widget: "string", required: false }
+          - { label: "Email", name: "email", widget: "string", required: false }
+          - { label: "Location", name: "location", widget: "string", default: "New York" }
+
+  - name: "works"
+    label: "Work"
+    folder: "src/works"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Medium", name: "medium", widget: "string", hint: "e.g. Clay, facilitation" }
+      - { label: "Year", name: "year", widget: "string" }
+      - { label: "Status", name: "status", widget: "select", options: ["ongoing", "completed"], default: "completed" }
+      - { label: "Order (lower = first)", name: "order", widget: "number", default: 99 }
+      - { label: "Cover Image", name: "image", widget: "image", required: false }
+      - { label: "Description", name: "body", widget: "markdown" }
+      - { label: "Featured on homepage", name: "featured", widget: "boolean", default: true }
+
+  - name: "writing"
+    label: "Writing"
+    folder: "src/writing"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Type", name: "type", widget: "select", options: ["Essay", "Notes", "Process", "Interview"] }
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }

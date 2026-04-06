@@ -1,0 +1,101 @@
+---
+layout: layouts/base.njk
+eleventyExcludeFromCollections: true
+---
+
+<section class="hero">
+  <div class="hero-text">
+    <h1>{{ site.tagline | replace(" & ", " &<br><em>") | replace(" weaver", " weaver</em>") | safe }}</h1>
+    <p>{{ site.bio_short }}</p>
+    <div class="hero-cta">
+      <a href="#work" class="cta-primary">View work</a>
+      <a href="#contact" class="cta-secondary">Get in touch</a>
+    </div>
+  </div>
+  <div class="hero-detail">
+    <p>
+      Clay &amp; ceramics<br>
+      Pole dance<br>
+      Printmaking<br>
+      Fiber arts<br>
+      Facilitation<br>
+      Community work
+    </p>
+  </div>
+</section>
+
+<section class="work-section" id="work">
+  <p class="section-label">Selected work</p>
+  <div class="work-grid">
+    {% for work in collections.works %}
+      {% if work.data.featured %}
+        <a href="{{ work.url }}" class="work-card">
+          <div class="work-card-img">
+            {% if work.data.image %}
+              <img src="{{ work.data.image }}" alt="{{ work.data.title }}" />
+            {% else %}
+              <div class="work-card-placeholder"></div>
+            {% endif %}
+          </div>
+          <div class="work-card-title">{{ work.data.title }}</div>
+          <div class="work-card-medium">{{ work.data.medium }}{% if work.data.year %} — {{ work.data.year }}{% endif %}{% if work.data.status === "ongoing" %}, ongoing{% endif %}</div>
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="about-section" id="about">
+  <div class="about-text">
+    <p class="section-label">About</p>
+    <h2>Making space for <em>new ways</em><br>of being together</h2>
+    {{ site.bio_full | markdownify | safe }}
+  </div>
+  <div class="about-sidebar">
+    <div class="sidebar-block">
+      <h4>Practice</h4>
+      <ul>
+        <li>Clay &amp; ceramics</li>
+        <li>Pole dance</li>
+        <li>Printmaking</li>
+        <li>Fiber arts</li>
+        <li>Facilitation</li>
+      </ul>
+    </div>
+    <div class="sidebar-block">
+      <h4>Recognition</h4>
+      <ul>
+        <li>Laundromat Project grantee</li>
+        <li>Create Change fellow (candidate)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="writing-section" id="writing">
+  <p class="section-label">Writing</p>
+  <div class="writing-grid">
+    {% for post in collections.writing | slice(0, 4) %}
+      <a href="{{ post.url }}" class="writing-card">
+        <div class="writing-date">{{ post.data.type }} — {{ post.data.date | dateDisplay }}</div>
+        <div class="writing-title">{{ post.data.title }}</div>
+        <div class="writing-excerpt">{{ post.data.excerpt }}</div>
+      </a>
+    {% endfor %}
+  </div>
+  {% if collections.writing.length > 4 %}
+    <a href="/writing/" class="all-writing-link">All writing</a>
+  {% endif %}
+</section>
+
+<section class="contact-section" id="contact">
+  <p class="section-label">Contact</p>
+  <div class="contact-inner">
+    <h2>Let's be in touch</h2>
+    {% if site.email %}
+      <a href="mailto:{{ site.email }}" class="contact-email">{{ site.email }}</a>
+    {% else %}
+      <p class="contact-placeholder">Add your email in Site Settings via the CMS admin panel.</p>
+    {% endif %}
+  </div>
+</section>

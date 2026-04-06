@@ -1,0 +1,18 @@
+---
+layout: layouts/base.njk
+---
+
+<article class="writing-detail">
+  <div class="writing-detail-header">
+    <a href="/writing/" class="back-link">← Writing</a>
+    <p class="writing-detail-meta">{{ type }} — {{ date | dateDisplay }}</p>
+    <h1>{{ title }}</h1>
+    {% if excerpt %}
+      <p class="writing-detail-excerpt">{{ excerpt }}</p>
+    {% endif %}
+  </div>
+
+  <div class="writing-detail-body prose">
+    {{ content | safe }}
+  </div>
+</article>

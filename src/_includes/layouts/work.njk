@@ -1,0 +1,21 @@
+---
+layout: layouts/base.njk
+---
+
+<article class="work-detail">
+  <div class="work-detail-header">
+    <a href="/#work" class="back-link">← Work</a>
+    <h1>{{ title }}</h1>
+    <p class="work-detail-meta">{{ medium }}{% if year %} — {{ year }}{% endif %}{% if status === "ongoing" %}, ongoing{% endif %}</p>
+  </div>
+
+  {% if image %}
+    <div class="work-detail-image">
+      <img src="{{ image }}" alt="{{ title }}" />
+    </div>
+  {% endif %}
+
+  <div class="work-detail-body prose">
+    {{ content | safe }}
+  </div>
+</article>
